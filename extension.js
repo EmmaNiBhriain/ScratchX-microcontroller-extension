@@ -39,7 +39,7 @@
     var descriptor = {
         blocks: [
         	//Block type, block name, function namem param1, param2
-        	[' ', 'Turn on LED', 'digitalLED', 'LED A', 'on'],
+        	[' ', 'Turn on LED', 'digitalLED', 'LED A', 'on']
         	//[' ', 'connect %m.hwOut to pin %n', 'connectHW', 'led A', 3],
         ]
     };
