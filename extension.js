@@ -549,8 +549,8 @@
         en: [
           ['h', 'when device is connected', 'whenConnected'],
           ['-'],
-          [' ', 'set %m.leds %m.outputs', 'digitalLED', 'led A', 'on'],
-          //[' ', 'set pin %n %m.outputs', 'digitalWrite', 1, 'on'],
+          //[' ', 'set %m.leds %m.outputs', 'digitalLED', 'led A', 'on'],
+          [' ', 'set pin %n %m.outputs', 'digitalWrite', 1, 'on'],
           ['-'],
         ],
         
@@ -578,5 +578,3 @@
     ScratchExtensions.register('Arduino', descriptor, ext, {type:'serial'});
 
 })({});
-
-
