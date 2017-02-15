@@ -6,7 +6,31 @@
 
     var connected = false;
 
-	var hwList = new HWList();
+    var hwList = new HWList();
+
+    //set up the device
+    function HWList() {
+        this.devices = [];
+
+        this.add = function(dev, pin) {
+            var device = this.search(dev);
+            if (!device) {
+                device = {name: dev, pin: 13, val: 0};
+                this.devices.push(device);
+            } else {
+                device.pin = 13;
+                device.val = 0;
+            }
+        };
+
+        this.search = function(dev) {
+            for (var i=0; i<this.devices.length; i++) {
+                if (this.devices[i].name === dev)
+                    return this.devices[i];
+            }
+            return null;
+        };
+    }
 
 	// Cleanup function when the extension is unloaded
     ext._shutdown = function() {};
@@ -44,13 +68,6 @@
             processInput(inputData);
         });
 
-    //what to do when the device is removed
-    ext._deviceRemoved = function (dev) {
-        if (device != dev) return;
-        if (poller) poller = clearInterval(poller);
-        device = null;
-    };
-
     //connect an led to a pin
     ext.connectHW = function(hw, pin) {
     hwList.add(hw, 13);
@@ -82,29 +99,7 @@
     };
 
 
-	//set up the device
-	function HWList() {
-    	this.devices = [];
-
-    	this.add = function(dev, pin) {
-      	var device = this.search(dev);
-      	if (!device) {
-        	device = {name: dev, pin: 13, val: 0};
-        	this.devices.push(device);
-      	} else {
-        	device.pin = 13;
-        	device.val = 0;
-      		}
-    	};
-
-    	this.search = function(dev) {
-      		for (var i=0; i<this.devices.length; i++) {
-        		if (this.devices[i].name === dev)
-         		 return this.devices[i];
-      		}
-      	return null;
-    	};
-	}
+	
 
 	function setAnalogInput(pin, val) {
 	    analogInputData[pin] = val;
