@@ -20,6 +20,37 @@
             return { status: 2, msg: 'Connected' };
     };
 
+    //connect to the device
+    var potentialDevices = [];
+    ext._deviceConnected = function (dev) {
+        potentialDevices.push(dev);
+
+        if (!device) {
+            tryNextDevice();
+        }
+    }
+
+    //code to run if the first serial port is not connected to arduino
+    var poller = null;
+    var watchdog = null;
+    function tryNextDevice() {
+        device = potentialDevices.shift();
+        if (!device) return;
+
+        device.open({ stopBits: 0, bitRate: 57600, ctsFlowControl: 0 });
+        console.log('Attempting connection with ' + device.id);
+        device.set_receive_handler(function(data) {
+            var inputData = new Uint8Array(data);
+            processInput(inputData);
+        });
+
+    //what to do when the device is removed
+    ext._deviceRemoved = function (dev) {
+        if (device != dev) return;
+        if (poller) poller = clearInterval(poller);
+        device = null;
+    };
+
     //connect an led to a pin
     ext.connectHW = function(hw, pin) {
     hwList.add(hw, 13);
@@ -38,7 +69,7 @@
       		digitalWrite(hw.pin, LOW);
      		 hw.val = 0;
     	}
-	};
+    };
 	
 
 	// Block and block menu descriptions
@@ -104,8 +135,10 @@
 	        digitalWrite(pin, LOW);
 	};
 
+	var serial_info = { type: 'serial' };
+
 	// Register the extension
-    ScratchExtensions.register('Arduino', descriptor, ext, {type:'serial'});
+	ScratchExtensions.register('Arduino', descriptor, ext, serial_info);
 })({});
 
 
