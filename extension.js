@@ -68,10 +68,24 @@
             processInput(inputData);
         });
 
+        poller = setInterval(function () {
+            queryFirmware();
+        }, 1000);
+
+        watchdog = setTimeout(function () {
+            clearInterval(poller);
+            poller = null;
+            device.set_receive_handler(null);
+            device.close();
+            device = null;
+            tryNextDevice();
+        }, 5000);
+    }
+
     //connect an led to a pin
     ext.connectHW = function(hw, pin) {
     hwList.add(hw, 13);
-};
+    };
 
     //Code that executes when the turn led on block is used
     //set the led to 0 or 1
@@ -135,7 +149,3 @@
 	// Register the extension
 	ScratchExtensions.register('Arduino', descriptor, ext, serial_info);
 })({});
-
-
-
-
