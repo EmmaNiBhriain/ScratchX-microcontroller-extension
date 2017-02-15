@@ -4,8 +4,6 @@
 	var LOW = 0,
 	HIGH = 1;
 
-    var connected = false;
-
 	var hwList = new HWList();
 
 	// Cleanup function when the extension is unloaded
@@ -14,21 +12,17 @@
     // Status reporting code
     // Use this to report missing hardware, plugin or unsupported browser
     ext._getStatus = function() {
-        if (!connected)
-            return { status: 1, msg: 'Disconnected' };
-        else
-            return { status: 2, msg: 'Connected' };
+        return {status: 2, msg: 'Ready'};
     };
 
     //connect an led to a pin
-    ext.connectHW = function(hw, pin) {
+    ext.connectHW = function(hw, 13) {
     hwList.add(hw, 13);
 };
 
     //Code that executes when the turn led on block is used
     //set the led to 0 or 1
-    ext.digitalLED = function (led, val) {
-        ext.connectHW(hw, 13);
+	ext.digitalLED = function(led, val) {
     	var hw = hwList.search(led);
     	if (!hw) return;
     	if (val == 'on') {
@@ -74,35 +68,6 @@
       	return null;
     	};
 	}
-
-	function setAnalogInput(pin, val) {
-	    analogInputData[pin] = val;
-	}
-
-	function digitalWrite(pin, val) {
-	    if (!hasCapability(pin, OUTPUT)) {
-	        console.log('ERROR: valid output pins are ' + pinModes[OUTPUT].join(', '));
-	        return;
-	    }
-	    var portNum = (pin >> 3) & 0x0F;
-	    if (val == LOW)
-	        digitalOutputData[portNum] &= ~(1 << (pin & 0x07));
-	    else
-	        digitalOutputData[portNum] |= (1 << (pin & 0x07));
-	    pinMode(pin, OUTPUT);
-	    var msg = new Uint8Array([
-            DIGITAL_MESSAGE | portNum,
-            digitalOutputData[portNum] & 0x7F,
-            digitalOutputData[portNum] >> 0x07]);
-	    device.send(msg.buffer);
-	}
-
-	ext.digitalWrite = function (pin, val) {
-	    if (val == menus[lang]['outputs'][0])
-	        digitalWrite(pin, HIGH);
-	    else if (val == menus[lang]['outputs'][1])
-	        digitalWrite(pin, LOW);
-	};
 
 	// Register the extension
     ScratchExtensions.register('Arduino', descriptor, ext, {type:'serial'});
