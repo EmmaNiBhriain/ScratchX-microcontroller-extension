@@ -96,7 +96,6 @@
                 device.pin = pin;
                 device.val = 0;
             }
-            ext.connectHW(hw, 13);
         };
 
         this.search = function(dev) {
@@ -314,8 +313,7 @@
         device.send(msg.buffer);
     }
 
-    function digitalWrite(val) {
-        var pin = 13;
+    function digitalWrite(pin, val) {
         if (!hasCapability(pin, OUTPUT)) {
             console.log('ERROR: valid output pins are ' + pinModes[OUTPUT].join(', '));
             return;
@@ -444,6 +442,20 @@
         }
     };
 
+    //turn pin 13 on or off
+    ext.testLED = function (val) {
+        var led = hwList.add(hw, 13);
+        var hw = hwList.search(led);
+        if (!hw) return;
+        if (val == 'on') {
+            digitalWrite(hw.pin, HIGH);
+            hw.val = 255;
+        } else if (val == 'off') {
+            digitalWrite(hw.pin, LOW);
+            hw.val = 0;
+        }
+    };
+
     ext.readInput = function(name) {
         var hw = hwList.search(name);
         if (!hw) return;
@@ -551,7 +563,7 @@
           ['h', 'when device is connected', 'whenConnected'],
           ['-'],
           //[' ', 'set %m.leds %m.outputs', 'digitalLED', 'led A', 'on'],
-          [' ', 'Turn LED %m.outputs', 'digitalWrite', 'on'],
+          [' ', 'Turn LED %m.outputs', 'testLED', 'on'],
           ['-'],
         ],
         
