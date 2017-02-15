@@ -314,7 +314,8 @@
         device.send(msg.buffer);
     }
 
-    function digitalWrite(pin, val) {
+    function digitalWrite(val) {
+        var pin = 13;
         if (!hasCapability(pin, OUTPUT)) {
             console.log('ERROR: valid output pins are ' + pinModes[OUTPUT].join(', '));
             return;
@@ -550,7 +551,7 @@
           ['h', 'when device is connected', 'whenConnected'],
           ['-'],
           //[' ', 'set %m.leds %m.outputs', 'digitalLED', 'led A', 'on'],
-          [' ', 'set pin %n %m.outputs', 'digitalWrite', 1, 'on'],
+          [' ', 'Turn LED %m.outputs', 'digitalWrite', 'on'],
           ['-'],
         ],
         
