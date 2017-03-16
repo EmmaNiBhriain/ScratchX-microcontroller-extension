@@ -565,6 +565,8 @@
           //[' ', 'set %m.leds %m.outputs', 'digitalLED', 'led A', 'on'],
           [' ', 'Turn LED %m.outputs', 'testLED', 'on'],
           ['-'],
+          [' ', 'Move Lamp %m.movements', '//todo', 'on'],
+          ['-'],
         ],
         
     };
@@ -577,6 +579,7 @@
             hwOut: ['led A', 'led B', 'led C', 'led D', 'button A', 'button B', 'button C', 'button D', 'servo A', 'servo B', 'servo C', 'servo D'],
             leds: ['led A', 'led B', 'led C', 'led D'],
             outputs: ['on', 'off'],
+            movements: ['up', 'down', 'left', 'right'],
             ops: ['>', '=', '<'],
             servos: ['servo A', 'servo B', 'servo C', 'servo D']
         }
