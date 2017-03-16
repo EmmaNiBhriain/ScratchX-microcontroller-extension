@@ -345,11 +345,14 @@ void digitalWriteCallback(byte port, int value)
     }
     writePort(port, (byte)value, pinWriteMask);
     //write to serial port
-    if(value == 1){
-      Serial3.write("1");
-    }
-    else if(value == 0){
+    //if(value == 1){
+      //Serial3.write("1");
+    //}
+    if(value == 0){
       Serial3.write("2");
+    }
+    else{
+      Serial3.write("1");
     }
     
   }
