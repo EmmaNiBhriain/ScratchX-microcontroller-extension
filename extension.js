@@ -462,7 +462,7 @@
             hw.val = 255;
         }
         else if (val == 'right') {
-            digitalWrite(h2.pin, LOW);
+            digitalWrite(hw2.pin, LOW);
             hw.val = 0;
         }
     }
