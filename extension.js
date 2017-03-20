@@ -443,13 +443,13 @@
     };
 
     ext.moveLamp = function (val) {
-        var led1 = hwList.add(hw, 13);
+        var led = hwList.add(hw, 13);
         var led2 = hwList.add(hw, 14);
-        var hw1 = hwList.search(led1);
+        var hw = hwList.search(led);
         var hw2 = hwList.search(led2);
 
 
-        if (!hw1) return;
+        if (!hw) return;
         if (val == 'up') {
             digitalWrite(hw1.pin, HIGH);
             hw.val = 255;
