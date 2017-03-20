@@ -449,7 +449,7 @@
         var hw2 = hwList.search(led2);
 
 
-        if (!hw) return;
+        if (!hw1) return;
         if (val == 'up') {
             digitalWrite(hw1.pin, HIGH);
             hw.val = 255;
