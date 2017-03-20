@@ -451,10 +451,10 @@
 
         if (!hw) return;
         if (val == 'up') {
-            digitalWrite(hw1.pin, HIGH);
+            digitalWrite(hw.pin, HIGH);
             hw.val = 255;
         } else if (val == 'down') {
-            digitalWrite(hw1.pin, LOW);
+            digitalWrite(hw.pin, LOW);
             hw.val = 0;
         }
         else if (val == 'left') {
