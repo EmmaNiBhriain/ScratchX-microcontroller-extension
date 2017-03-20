@@ -442,6 +442,31 @@
         }
     };
 
+    ext.moveLamp = function (val) {
+        var led1 = hwList.add(hw, 13);
+        var led2 = hwList.add(hw, 14);
+        var hw1 = hwList.search(led1);
+        var hw2 = hwList.search(led2);
+
+
+        if (!hw) return;
+        if (val == 'up') {
+            digitalWrite(hw1.pin, HIGH);
+            hw.val = 255;
+        } else if (val == 'down') {
+            digitalWrite(hw1.pin, LOW);
+            hw.val = 0;
+        }
+        else if (val == 'left') {
+            digitalWrite(hw2.pin, HIGH);
+            hw.val = 255;
+        }
+        else if (val == 'right') {
+            digitalWrite(h2.pin, LOW);
+            hw.val = 0;
+        }
+    }
+
     //turn pin 13 on or off
     ext.testLED = function (val) {
         var led = hwList.add(hw, 13);
@@ -565,7 +590,7 @@
           //[' ', 'set %m.leds %m.outputs', 'digitalLED', 'led A', 'on'],
           [' ', 'Turn LED %m.outputs', 'testLED', 'on'],
           ['-'],
-          [' ', 'Move Lamp %m.movements', '//todo', 'up'],
+          [' ', 'Move Lamp %m.movements', 'moveLamp', 'up'],
           ['-'],
         ],
         
