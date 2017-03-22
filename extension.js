@@ -444,9 +444,9 @@
 
     ext.moveLamp = function (val) {
         var led = hwList.add(hw, 13);
-        var led2 = hwList.add(hw, 14);
+       // var led2 = hwList.add(hw, 14);
         var hw = hwList.search(led);
-        var hw2 = hwList.search(led2);
+        //var hw2 = hwList.search(led2);
 
 
         if (!hw) return;
@@ -457,14 +457,14 @@
             digitalWrite(hw.pin, LOW);
             hw.val = 0;
         }
-        else if (val == 'left') {
+        /*else if (val == 'left') {
             digitalWrite(hw2.pin, HIGH);
             hw.val = 255;
         }
         else if (val == 'right') {
             digitalWrite(hw2.pin, LOW);
             hw.val = 0;
-        }
+        }*/
     }
 
     //turn pin 13 on or off
