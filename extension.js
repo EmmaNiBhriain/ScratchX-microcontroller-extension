@@ -589,7 +589,7 @@
           ['-'],
           //[' ', 'set %m.leds %m.outputs', 'digitalLED', 'led A', 'on'],
           //[' ', 'Turn LED %m.outputs', 'testLED', 'on'],
-          ['-'],
+          //['-'],
           [' ', 'Move Lamp %m.movements', 'moveLamp', 'up'],
           ['-'],
         ],
