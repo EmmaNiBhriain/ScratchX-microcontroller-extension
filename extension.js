@@ -592,6 +592,16 @@
           ['-'],
           [' ', 'Move Lamp %m.movements', 'moveLamp', 'up'],
           ['-'],
+          [' ', 'Turn Lamp Head %m.head', 'moveHead', 'left'],
+          ['-'],
+          [' ', 'Move Lamp Eyes %m.head', 'moveEyes', 'left'],
+          ['-'],
+          [' ', 'Blink', 'blink'],
+          ['-'],
+          [' ', 'Wink', 'wink'],
+          ['-'],
+          [' ', 'Set Lamp Pupils %m.pupils', 'wink', 'open'],
+          ['-']
         ],
         
     };
@@ -604,9 +614,11 @@
             hwOut: ['led A', 'led B', 'led C', 'led D', 'button A', 'button B', 'button C', 'button D', 'servo A', 'servo B', 'servo C', 'servo D'],
             leds: ['led A', 'led B', 'led C', 'led D'],
             outputs: ['on', 'off'],
-            movements: ['up', 'down', 'left', 'right'],
+            movements: ['up', 'down', 'left', 'right', 'in', 'out'],
             ops: ['>', '=', '<'],
-            servos: ['servo A', 'servo B', 'servo C', 'servo D']
+            servos: ['servo A', 'servo B', 'servo C', 'servo D'],
+            head: ['on', 'off'],
+            pupils: ['open', 'wide', 'narrow']
         }
     };
 
