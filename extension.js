@@ -617,7 +617,7 @@
             movements: ['up', 'down', 'left', 'right', 'in', 'out'],
             ops: ['>', '=', '<'],
             servos: ['servo A', 'servo B', 'servo C', 'servo D'],
-            head: ['on', 'off'],
+            head: ['left', 'right'],
             pupils: ['open', 'wide', 'narrow']
         }
     };
