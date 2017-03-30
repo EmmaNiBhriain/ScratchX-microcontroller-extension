@@ -442,6 +442,11 @@
         }
     };
 
+    /**
+    * Called by the 'Move Lamp' block to move the lamp left, right, up, down, in or out
+    * 
+    * @param val 
+    */
     ext.moveLamp = function (val) {
         var led = hwList.add(hw, 13);
        // var led2 = hwList.add(hw, 14);
@@ -451,20 +456,56 @@
 
         if (!hw) return;
         if (val == 'up') {
-            digitalWrite(hw.pin, HIGH);
+            digitalWrite(hw.pin, 1);
             hw.val = 255;
         } else if (val == 'down') {
-            digitalWrite(hw.pin, LOW);
+            digitalWrite(hw.pin, 0);
             hw.val = 0;
         }
         /*else if (val == 'left') {
-            digitalWrite(hw2.pin, HIGH);
+            digitalWrite(hw2.pin, 2);
             hw.val = 255;
         }
         else if (val == 'right') {
-            digitalWrite(hw2.pin, LOW);
+            digitalWrite(hw2.pin, 3);
             hw.val = 0;
         }*/
+    }
+    
+
+    /**
+    * Called by the 'Move Lamp Head' block to move the lamp's head up or right
+    * 
+    * @param val 
+    */
+    ext.moveHead = function(val) {
+        //TO DO
+    }
+
+
+    /**
+    * Called by the 'Move Lamp Eyes' block to move the lamp's eyes left or right
+    * @param val
+    */
+    ext.moveEyes = function(val) {
+        //TO DO
+    }
+
+
+    /**
+    * Called by the blink block,  
+    * 
+    */
+    ext.blink = function() {
+        //TO DO
+    }
+
+    ext.blink = function() {
+        //TO DO
+    }
+
+    ext.pupils = function (val) {
+        //TO DO
     }
 
     //turn pin 13 on or off
@@ -473,10 +514,10 @@
         var hw = hwList.search(led);
         if (!hw) return;
         if (val == 'on') {
-            digitalWrite(hw.pin, HIGH);
+            digitalWrite(hw.pin, 2);  //TEST IF VALUES OTHER THAN 1 OR 0 CAN BE SENT
             hw.val = 255;
         } else if (val == 'off') {
-            digitalWrite(hw.pin, LOW);
+            digitalWrite(hw.pin, 1);
             hw.val = 0;
         }
     };
@@ -590,17 +631,30 @@
           //[' ', 'set %m.leds %m.outputs', 'digitalLED', 'led A', 'on'],
           [' ', 'Turn LED %m.outputs', 'testLED', 'on'],
           ['-'],
-          [' ', 'Move Lamp %m.movements', 'moveLamp', 'up'],
+          [' ', 'Move Lamp Up %n%', 'moveLamp', '180'],
           ['-'],
-          [' ', 'Turn Lamp Head %m.head', 'moveHead', 'left'],
+          [' ', 'Turn Lamp %n%', 'moveLamp', '180'],
           ['-'],
-          [' ', 'Move Lamp Eyes %m.head', 'moveEyes', 'left'],
           ['-'],
+          [' ', 'Move Lamp Out %n%', 'moveLamp', '180'],
+          ['-'],
+          [' ', 'Move Lamp Neck %n%', 'moveLamp', '180'],  //head left or right
+          ['-'],
+          [' ', 'Move Lamp Eyes %n%', 'moveLamp', '180'],
+          ['-'],
+          [' ', 'Set Lamp Pupils %n%', 'pupils', '180'],
+          ['-']
           [' ', 'Blink', 'blink'],
           ['-'],
           [' ', 'Wink', 'wink'],
           ['-'],
-          [' ', 'Set Lamp Pupils %m.pupils', 'wink', 'open'],
+          [' ', 'Lamp New 1 %n%', 'tbd', '180'],
+          ['-']
+          [' ', 'Lamp New 2 %n%', 'tbd', '180'],
+          ['-']
+          [' ', 'Lamp New 3 %n%', 'tbd', '180'],
+          ['-']
+          [' ', 'Lamp New 4 %n%', 'tbd', '180'],
           ['-']
         ],
         
