@@ -443,6 +443,19 @@
     };
 
     /**
+    * Move the lamp up by 0%
+    */
+
+    ext.lampUp = function(deg) {
+        pinMode(1, SERVO);
+        var msg = new Uint8Array([
+            ANALOG_MESSAGE | (pin & 0x0F),
+            deg & 0x7F,
+            deg >> 0x07]);
+        device.send(msg.buffer);
+    }
+
+    /**
     * Called by the 'Move Lamp' block to move the lamp left, right, up, down, in or out
     * 
     * @param val 
@@ -514,10 +527,10 @@
         var hw = hwList.search(led);
         if (!hw) return;
         if (val == 'on') {
-            digitalWrite(hw.pin, 2);  //TEST IF VALUES OTHER THAN 1 OR 0 CAN BE SENT
+            digitalWrite(hw.pin, 1);  
             hw.val = 255;
         } else if (val == 'off') {
-            digitalWrite(hw.pin, 1);
+            digitalWrite(hw.pin, 0);
             hw.val = 0;
         }
     };
@@ -631,7 +644,7 @@
           //[' ', 'set %m.leds %m.outputs', 'digitalLED', 'led A', 'on'],
           [' ', 'Turn LED %m.outputs', 'testLED', 'on'],
           ['-'],
-          [' ', 'Move Lamp Up %n%', 'moveLamp', '180'],
+          [' ', 'Move Lamp Up %n%', 'lampUp', '180'],
           [' ', 'Turn Lamp %n%', 'moveLamp', '180'],
           [' ', 'Move Lamp Out %n%', 'moveLamp', '180'],
           ['-'],
