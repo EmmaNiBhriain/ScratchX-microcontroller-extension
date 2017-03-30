@@ -632,10 +632,7 @@
           [' ', 'Turn LED %m.outputs', 'testLED', 'on'],
           ['-'],
           [' ', 'Move Lamp Up %n%', 'moveLamp', '180'],
-          ['-'],
           [' ', 'Turn Lamp %n%', 'moveLamp', '180'],
-          ['-'],
-          ['-'],
           [' ', 'Move Lamp Out %n%', 'moveLamp', '180'],
           ['-'],
           [' ', 'Move Lamp Neck %n%', 'moveLamp', '180'],  //head left or right
@@ -649,11 +646,8 @@
           [' ', 'Wink', 'wink'],
           ['-'],
           [' ', 'Lamp New 1 %n%', 'tbd', '180'],
-          ['-'],
           [' ', 'Lamp New 2 %n%', 'tbd', '180'],
-          ['-'],
           [' ', 'Lamp New 3 %n%', 'tbd', '180'],
-          ['-'],
           [' ', 'Lamp New 4 %n%', 'tbd', '180']
         ],
         
