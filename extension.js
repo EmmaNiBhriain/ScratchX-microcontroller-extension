@@ -643,7 +643,7 @@
           [' ', 'Move Lamp Eyes %n%', 'moveLamp', '180'],
           ['-'],
           [' ', 'Set Lamp Pupils %n%', 'pupils', '180'],
-          ['-']
+          ['-'],
           [' ', 'Blink', 'blink'],
           ['-'],
           [' ', 'Wink', 'wink'],
@@ -654,8 +654,7 @@
           ['-']
           [' ', 'Lamp New 3 %n%', 'tbd', '180'],
           ['-']
-          [' ', 'Lamp New 4 %n%', 'tbd', '180'],
-          ['-']
+          [' ', 'Lamp New 4 %n%', 'tbd', '180']
         ],
         
     };
