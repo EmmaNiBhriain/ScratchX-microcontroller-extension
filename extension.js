@@ -443,67 +443,66 @@
     };
 
     /**
-    * Move the lamp up by 0%
+    * Move the lamp up by n%
     */
 
-    ext.lampUp = function(deg) {
-        pinMode(1, SERVO);
+    ext.lampUp = function (deg) {
+        if (deg < 0) deg = 0;
+        else if (deg > 100) deg = 100;
+        lampUp(1, deg);
+    }
+
+    function lampUp(pin, deg) {
+        pinMode(pin, SERVO);
         var msg = new Uint8Array([
             ANALOG_MESSAGE | (pin & 0x0F),
             deg & 0x7F,
             deg >> 0x07]);
         device.send(msg.buffer);
     }
-
-    /**
-    * Called by the 'Move Lamp' block to move the lamp left, right, up, down, in or out
-    * 
-    * @param val 
-    */
-    ext.moveLamp = function (val) {
-        var led = hwList.add(hw, 13);
-       // var led2 = hwList.add(hw, 14);
-        var hw = hwList.search(led);
-        //var hw2 = hwList.search(led2);
-
-
-        if (!hw) return;
-        if (val == 'up') {
-            digitalWrite(hw.pin, 1);
-            hw.val = 255;
-        } else if (val == 'down') {
-            digitalWrite(hw.pin, 0);
-            hw.val = 0;
-        }
-        /*else if (val == 'left') {
-            digitalWrite(hw2.pin, 2);
-            hw.val = 255;
-        }
-        else if (val == 'right') {
-            digitalWrite(hw2.pin, 3);
-            hw.val = 0;
-        }*/
-    }
     
 
     /**
-    * Called by the 'Move Lamp Head' block to move the lamp's head up or right
+    * Called by the 'Turn Lamp' block to move the lamp left or right
     * 
-    * @param val 
+    * @param deg 
     */
-    ext.moveHead = function(val) {
+    ext.turnLamp = function(deg) {
         //TO DO
     }
 
 
     /**
-    * Called by the 'Move Lamp Eyes' block to move the lamp's eyes left or right
-    * @param val
+    * Called by the 'Move Lamp Out' block to move the lamp in and out
+    * @param deg
     */
-    ext.moveEyes = function(val) {
+    ext.lampOut = function(val) {
         //TO DO
     }
 
+    /**
+    * Called by the 'Move Lamp Neck' block to move the lamp's head left and right
+    * @param deg
+    */
+    ext.lampNeck = function (deg) {
+
+    }
+
+    /**
+    * Called by the 'Move Lamp Eyes' block to move the lamp's eyes left and right
+    * @param deg
+    */
+    ext.moveEyes = function (deg) {
+
+    }
+
+    /**
+    * Called by the 'Set pupils' block to set the wideness of the lamps pupils
+    * @param deg
+    */
+    ext.pupils = function (deg) {
+
+    }
 
     /**
     * Called by the blink block,  
@@ -513,13 +512,13 @@
         //TO DO
     }
 
-    ext.blink = function() {
+    /**
+    * Called by the wink block
+    */
+    ext.wink = function() {
         //TO DO
     }
 
-    ext.pupils = function (val) {
-        //TO DO
-    }
 
     //turn pin 13 on or off
     ext.testLED = function (val) {
@@ -644,24 +643,24 @@
           //[' ', 'set %m.leds %m.outputs', 'digitalLED', 'led A', 'on'],
           [' ', 'Turn LED %m.outputs', 'testLED', 'on'],
           ['-'],
-          [' ', 'Move Lamp Up %n%', 'lampUp', '180'],
-          [' ', 'Turn Lamp %n%', 'moveLamp', '180'],
-          [' ', 'Move Lamp Out %n%', 'moveLamp', '180'],
+          [' ', 'Move Lamp Up %n%', 'lampUp', '100'],
+          [' ', 'Turn Lamp %n%', 'moveLamp', '100'],
+          [' ', 'Move Lamp Out %n%', 'moveLamp', '100'],
           ['-'],
-          [' ', 'Move Lamp Neck %n%', 'moveLamp', '180'],  //head left or right
+          [' ', 'Move Lamp Neck %n%', 'moveLamp', '100'],  //head left or right
           ['-'],
-          [' ', 'Move Lamp Eyes %n%', 'moveLamp', '180'],
+          [' ', 'Move Lamp Eyes %n%', 'moveLamp', '100'],
           ['-'],
-          [' ', 'Set Lamp Pupils %n%', 'pupils', '180'],
+          [' ', 'Set Lamp Pupils %n%', 'pupils', '100'],
           ['-'],
           [' ', 'Blink', 'blink'],
           ['-'],
           [' ', 'Wink', 'wink'],
           ['-'],
-          [' ', 'Lamp New 1 %n%', 'tbd', '180'],
-          [' ', 'Lamp New 2 %n%', 'tbd', '180'],
-          [' ', 'Lamp New 3 %n%', 'tbd', '180'],
-          [' ', 'Lamp New 4 %n%', 'tbd', '180']
+          [' ', 'Lamp New 1 %n%', 'tbd', '100'],
+          [' ', 'Lamp New 2 %n%', 'tbd', '100'],
+          [' ', 'Lamp New 3 %n%', 'tbd', '100'],
+          [' ', 'Lamp New 4 %n%', 'tbd', '100']
         ],
         
     };
