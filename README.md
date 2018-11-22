@@ -5,7 +5,7 @@ This project uses a javascript extension.js file to create a ScratchX interface 
 
 ## How it works
 The scratchxproject.sbx file is loaded to the ScratchX website. This allows the website to load and display the custom blocks specific to this project. 
-** NOTE: In order to load the .sbx file the browser you are using requires Flash. For this reason the application works best in Internet Explorer or Google Chrome. Please ensure Flash is enabled before use. ** 
+**NOTE: In order to load the .sbx file the browser you are using requires Flash. For this reason the application works best in Internet Explorer or Google Chrome. Please ensure Flash is enabled before use.** 
 
 ## Directions for Use
 #### 1. Navigate to [ScratchX.org](https://scratchx.org)
